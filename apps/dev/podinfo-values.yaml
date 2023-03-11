@@ -16,3 +16,7 @@ spec:
           paths:
             - path: /
               pathType: ImplementationSpecific
+    logLevel: debug
+    replicaCount: 2
+    ui:
+      color: red
