@@ -1,0 +1,27 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: demo-dev
+  namespace: demo-dev
+spec:
+  releaseName: demo-dev
+  chart:
+    spec:
+      chart: app
+      sourceRef:
+        kind: GitRepository
+        name: demo
+  interval: 50m
+  install:
+    remediation:
+      retries: 3
+  # Default values
+  # https://github.com/stefanprodan/demo-dev/blob/master/charts/demo-dev/values.yaml
+  # values:
+  #   redis:
+  #     enabled: true
+  #     repository: public.ecr.aws/docker/library/redis
+  #     tag: 7.0.6
+  #   ingress:
+  #     enabled: true
+  #     className: nginx
