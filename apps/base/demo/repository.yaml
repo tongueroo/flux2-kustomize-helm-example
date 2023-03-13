@@ -3,7 +3,8 @@ kind: GitRepository
 metadata:
   name: demo
 spec:
-  interval: 5m0s
-  url: https://github.com/tongueroo/helm-app
+  interval: 10s
+  # url: https://github.com/tongueroo/helm-app
+  url: https://tongueroo.github.io/helm-charts/
   ref:
     branch: main
