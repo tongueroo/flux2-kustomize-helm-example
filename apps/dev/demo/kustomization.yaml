@@ -4,5 +4,5 @@ namespace: demo-dev
 resources:
   - namespace.yaml
   - ../../base/demo
-# patchesStrategicMerge:
-#   - demo-values.yaml
+patchesStrategicMerge:
+  - demo-values.yaml
