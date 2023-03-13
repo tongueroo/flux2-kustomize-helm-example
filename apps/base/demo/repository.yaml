@@ -1,10 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: GitRepository
+kind: HelmRepository
 metadata:
   name: demo
 spec:
   interval: 10s
-  # url: https://github.com/tongueroo/helm-app
   url: https://tongueroo.github.io/helm-charts/
-  ref:
-    branch: main
