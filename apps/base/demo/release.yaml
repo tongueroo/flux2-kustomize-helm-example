@@ -9,7 +9,7 @@ spec:
     spec:
       chart: app
       sourceRef:
-        kind: GitRepository
+        kind: HelmRepository
         name: demo
   interval: 50m
   install:
