@@ -2,9 +2,9 @@
 # https://fluxcd.io/flux/components/source/gitrepositories/#excluding-files
 
 # Exclude all
-/*
+# /*
 
-# Include manifest directories
-!/apps/
-!/clusters/
-!/infrastructure/
+# # Include manifest directories
+# !/apps/
+# !/clusters/
+# !/infrastructure/
