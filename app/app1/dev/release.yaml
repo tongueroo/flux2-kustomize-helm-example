@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: app1-dev-2
-  namespace: app1-dev-2
+  name: app1-dev-3
+  namespace: app1-dev-3
 spec:
   # releaseName: demo-dev
   chart:
