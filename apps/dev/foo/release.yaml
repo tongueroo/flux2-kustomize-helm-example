@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: foo-dev
+  namespace: foo-dev
+spec:
+  releaseName: foo-dev
+  chart:
+    spec:
+      chart: app
+      sourceRef:
+        kind: HelmRepository
+        name: common-helm-charts
+  interval: 10s
+  # interval: 50m
+  install:
+    remediation:
+      retries: 3
+  # Default values
+  # https://github.com/stefanprodan/demo-dev/blob/master/charts/demo-dev/values.yaml
+  values:
+    image:
+      pullPolicy: Always
+      repository: tongueroo/demo-nginx
+      tag: kubes-2023-03-13T19-22-06
