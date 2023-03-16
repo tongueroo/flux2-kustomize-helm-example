@@ -1,0 +1,78 @@
+---
+metadata:
+  labels:
+    app: demo
+  name: demo-dev
+apiVersion: v1
+kind: Namespace
+
+---
+metadata:
+  namespace: demo-dev
+  labels:
+    app: demo
+    role: web
+  name: web
+apiVersion: v1
+kind: Service
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    role: web
+  type: ClusterIP
+
+---
+metadata:
+  namespace: demo-dev
+  labels:
+    app: demo
+    role: web
+  name: web
+spec:
+  selector:
+    matchLabels:
+      app: demo
+      env: dev
+      role: web
+  template:
+    metadata:
+      labels:
+        app: demo
+        env: dev
+        role: web
+    spec:
+      containers:
+      - name: web
+        image: tongueroo/demo-nginx:kubes-2023-03-13T19-22-06
+  replicas: 1
+apiVersion: apps/v1
+kind: Deployment
+
+---
+metadata:
+  namespace: demo-dev
+  labels:
+    app: demo
+  name: web
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: all-apps-ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+spec:
+  rules:
+  - host: demo.pro.dev.boltops.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: web
+            port:
+              number: 80
